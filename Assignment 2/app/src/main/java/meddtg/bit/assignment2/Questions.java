@@ -1,5 +1,9 @@
 package meddtg.bit.assignment2;
 
+/**
+ * This class holds all the data for the questions which is taken to the main java class to be sorted
+ * into questions
+ */
 public class Questions {
     public String ques;
     public String img;
@@ -82,6 +86,11 @@ public class Questions {
                 break;
         }
     }
+
+    /**
+     * these return the anser and question to the main class to be used
+     * @return
+     */
     public String getAnswer() { return ans1; }
     public String questionString() { return ques; }
 }

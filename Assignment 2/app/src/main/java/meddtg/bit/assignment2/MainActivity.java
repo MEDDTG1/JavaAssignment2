@@ -1,3 +1,8 @@
+/**
+ * This class is the main code for this program which sets up the main quiz
+ * and things like images aswell as handling the swapping of images and questions
+ */
+
 package meddtg.bit.assignment2;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,13 +39,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setQuestion();
         showQuestion();
     }
-
+    /**
+     * This method is used to set the questions up before they are shown
+     */
     public void setQuestion() {
         for (int i = 0; i < questions.length; i++) {
             questions[i] = new Questions(i);
         }
     }
 
+    /**
+     * This method puts the images and question onto the screen in the correct questions then calls the
+     * setUpButtons method
+     */
     public  void  showQuestion() {
         TextView quest = findViewById(R.id.questionText);
         quest.setText(questions[questionNum].questionString());
@@ -79,6 +90,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * This method sets up the radio buttons and randomizes the location of the answer
+     * then puts them onto the screen
+     */
     public void setUpButtons() {
         RadioButton r1 = findViewById(R.id.radioButton);
         RadioButton r2 = findViewById(R.id.radioButton2);
@@ -113,6 +128,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    /**
+     * This method creates an onclick event so that when the submit button is pressed
+     * it will check if a radiobutton is selected then checks to see what question the user
+     * is on then checks the answer
+     *
+     * this method also changes the number for the question text at the top of the screen
+     *
+     * if the user is on the last question this method will send them to the results screen
+     * @param v
+     */
     @Override
     public void onClick(View v) {
         if(rg.getCheckedRadioButtonId() == -1){
@@ -127,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Toast.makeText(this, "Correct", Toast.LENGTH_LONG).show();
             }
             else {
-                Toast.makeText(this, "wrong", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Wrong the correct answer was: " + questions[questionNum].getAnswer(), Toast.LENGTH_LONG).show();
             }
             questionNum++;
             rg.clearCheck();
